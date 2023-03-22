@@ -1,0 +1,24 @@
+import requests
+
+# GitHub account information
+username = "your_username"
+access_token = "your_access_token"
+
+# Repository information
+repo_name = "repo_to_delete"
+
+# API endpoint
+api_base_url = "https://api.github.com"
+repos_url = f"{api_base_url}/repos/{username}/{repo_name}"
+
+# Delete the repository
+headers = {
+    "Authorization": f"token {access_token}",
+    "Accept": "application/vnd.github.v3+json"
+}
+response = requests.delete(repos_url, headers=headers)
+
+if response.status_code == 204:
+    print(f"Successfully deleted repository '{repo_name}'")
+else:
+    print(f"Failed to delete repository. Error message: {response.text}")
